@@ -37,6 +37,7 @@ Use`*` for a generic tag if you so please
 
 ```python
 from selenium import webdriver
+from xpath import Xpath
 
 driver = webdriver.Chrome()
 
