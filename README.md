@@ -148,6 +148,25 @@ loader.get_element(wait=5.0)
 
 ```
 
+### 6. Quick prints for debugging
+
+You can test all xpaths before adding to code, using the print command on the class itself, so you can copy and test directly on browser.
+For this, I recommend using the xpath.py file itself, under ´__name__ == "__main__"´, setting driver as `None`
+
+```python
+if __name__ == "__main__":
+    some_xpath = Xpath(None, "div")\
+        .contains("class", "example")\
+        .child_condition("equals", "data-id", "123")\
+        .following_sibling("span")\
+        .sibling_condition("starts_with", "class", "label")
+    
+    print(some_xpath)
+    # should return:
+    # ".//div[contains(@class, 'example')][.//*[@data-id='123']]/following-sibling::span"
+    # I have no idea if this is valid xpath, but it looks complex enough
+```
+
 ## EmptyWebElement Handling
 
 To prevent your script from crashing when an element is not found, the `element` property returns an `EmptyWebElement` if the search fails. This object evaluates to `False` in boolean checks and safely absorbs method calls. Raises warnings when created.
